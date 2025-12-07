@@ -1,0 +1,402 @@
+#<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREA FAMILIA - Cuentos Infantiles Personalizados</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #5a5a5a;
+            background-color: #faf9f6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #e8d5f2 0%, #d5e5f2 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #7b68a6;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #8a7ba3;
+            font-style: italic;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            color: #a68b9e;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 60px 20px;
+            background-color: #f5f0f6;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #a68b9e;
+            margin-bottom: 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            color: #7b68a6;
+            margin-bottom: 10px;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 80px 20px;
+            background-color: #fff;
+        }
+
+        .form-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #a68b9e;
+            margin-bottom: 40px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f9f5f9;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #7b68a6;
+            font-weight: bold;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e8d5f2;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background-color: white;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #a68b9e;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #a68b9e 0%, #7b68a6 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(123, 104, 166, 0.3);
+        }
+
+        /* Community Section */
+        .community {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #d5e5f2 0%, #e8f5e9 100%);
+            text-align: center;
+        }
+
+        .community h2 {
+            font-size: 2rem;
+            color: #7b68a6;
+            margin-bottom: 20px;
+        }
+
+        .community p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: white;
+        }
+
+        .telegram-btn {
+            background: linear-gradient(135deg, #64b5f6 0%, #42a5f5 100%);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #66bb6a 0%, #43a047 100%);
+        }
+
+        .instagram-btn {
+            background: linear-gradient(135deg, #e1306c 0%, #c13584 100%);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #7b68a6;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2, .features h2, .form-section h2, .community h2 {
+                font-size: 1.5rem;
+            }
+
+            form {
+                padding: 30px 20px;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .social-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>CREA FAMILIA</h1>
+            <p class="tagline">diseñando productos con propósitos eternos</p>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Cuentos Infantiles Personalizados</h2>
+            <p>
+                Cada niño es único y especial. Crea un cuento personalizado donde tu hijo o hija 
+                sea el protagonista, mientras aprende valores cristianos y principios bíblicos 
+                de manera divertida y significativa.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>¿Por qué elegir CREA FAMILIA?</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">📖</div>
+                    <h3>Totalmente Personalizado</h3>
+                    <p>Tu hijo será el protagonista de su propia aventura con su nombre, características y valores que deseas reforzar.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">✝️</div>
+                    <h3>Principios Bíblicos</h3>
+                    <p>Cada historia está basada en enseñanzas cristianas que fortalecen la fe y los valores familiares.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">❤️</div>
+                    <h3>Propósito Eterno</h3>
+                    <p>No solo es un cuento, es una herramienta para sembrar verdades eternas en el corazón de tus hijos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <h2>Solicita tu Cuento Personalizado</h2>
+            <form action="https://formsubmit.co/libreriacreafamilia@gmail.com" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="Nueva Solicitud de Cuento Personalizado - CREA FAMILIA">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                
+                <div class="form-group">
+                    <label for="nombre-padre">Tu Nombre Completo *</label>
+                    <input type="text" id="nombre-padre" name="nombre-padre" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono / WhatsApp *</label>
+                    <input type="tel" id="telefono" name="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre-nino">Nombre del Niño/Niña *</label>
+                    <input type="text" id="nombre-nino" name="nombre-nino" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="edad">Edad del Niño/Niña *</label>
+                    <input type="number" id="edad" name="edad" min="1" max="12" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tema">Tema o Valor Bíblico que deseas reforzar *</label>
+                    <select id="tema" name="tema" required>
+                        <option value="">Selecciona una opción...</option>
+                        <option value="amor">Amor y Bondad</option>
+                        <option value="fe">Fe y Confianza en Dios</option>
+                        <option value="obediencia">Obediencia</option>
+                        <option value="perdon">Perdón y Reconciliación</option>
+                        <option value="gratitud">Gratitud</option>
+                        <option value="valentia">Valentía</option>
+                        <option value="amistad">Amistad</option>
+                        <option value="oracion">Oración</option>
+                        <option value="otro">Otro (especificar en comentarios)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="detalles">Detalles Adicionales (características del niño, preferencias, etc.)</label>
+                    <textarea id="detalles" name="detalles" placeholder="Ej: Le gustan los dinosaurios, es tímido/a, tiene una hermana pequeña..."></textarea>
+                </div>
+
+                <button type="submit">Solicitar Cuento</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community">
+        <div class="container">
+            <h2>Únete a Nuestra Comunidad</h2>
+            <p>Familia Fuerte sobre la Roca - Compartiendo recursos, experiencias y fortaleciendo nuestra fe juntos</p>
+            <div class="social-buttons">
+                <a href="https://t.me/FamiliaFuertesobrelaRoca" target="_blank" class="social-btn telegram-btn">
+                    📱 Unirse a Telegram
+                </a>
+                <a href="https://chat.whatsapp.com/JA9AYj4Hyrs80hmoREtMwA" target="_blank" class="social-btn whatsapp-btn">
+                    💬 Unirse a WhatsApp
+                </a>
+                <a href="https://instagram.com/crea_familia" target="_blank" class="social-btn instagram-btn">
+                    📷 Síguenos en Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>CREA FAMILIA</strong></p>
+            <p>diseñando productos con propósitos eternos</p>
+            <p>📧 libreriacreafamilia@gmail.com</p>
+            <p>&copy; 2025 CREA FAMILIA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
