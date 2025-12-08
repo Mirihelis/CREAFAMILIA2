@@ -1,0 +1,842 @@
+import {
+  Heart,
+  Book,
+  Star,
+  Gift,
+  Instagram,
+  Facebook,
+  Mail,
+  Send,
+  Share2,
+  MessageCircle,
+} from "lucide-react";
+import { ImageWithFallback } from "./components/figma/ImageWithFallback";
+import logo from "figma:asset/24ac0919b1bcbdacb347317fb24490e891d1d0c4.png";
+import { useState } from "react";
+
+export default function App() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    telefono: "",
+    nombreNino: "",
+    edad: "",
+    tema: "",
+    mensaje: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Aquí se enviará el formulario
+    console.log("Formulario enviado:", formData);
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const shareOnSocialMedia = (platform: string) => {
+    const url = window.location.href;
+    const text =
+      "¡Descubre CREA FAMILIA! Cuentos infantiles personalizados basados en principios bíblicos";
+
+    const shareUrls: { [key: string]: string } = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+      whatsapp: `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`,
+      telegram: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+    };
+
+    if (shareUrls[platform]) {
+      window.open(
+        shareUrls[platform],
+        "_blank",
+        "width=600,height=400",
+      );
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+      {/* Header/Navbar */}
+      <header className="bg-white/70 backdrop-blur-sm shadow-sm sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <img
+              src={logo}
+              alt="CREA FAMILIA Logo"
+              className="h-12 w-12 object-contain"
+            />
+            <div>
+              <h1 className="text-pink-400">CREA FAMILIA</h1>
+              <p className="text-xs text-purple-400">
+                Diseñando productos con propósitos eternos
+              </p>
+            </div>
+          </div>
+          <nav className="hidden md:flex gap-6">
+            <a
+              href="#inicio"
+              className="text-purple-600 hover:text-pink-400 transition-colors"
+            >
+              Inicio
+            </a>
+            <a
+              href="#producto"
+              className="text-purple-600 hover:text-pink-400 transition-colors"
+            >
+              Producto
+            </a>
+            <a
+              href="#valores"
+              className="text-purple-600 hover:text-pink-400 transition-colors"
+            >
+              Valores
+            </a>
+            <a
+              href="#contacto"
+              className="text-purple-600 hover:text-pink-400 transition-colors"
+            >
+              Contacto
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section
+        id="inicio"
+        className="max-w-6xl mx-auto px-6 py-20"
+      >
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <div className="inline-block bg-pink-100 text-pink-600 px-4 py-2 rounded-full">
+              ✨ Cuentos con propósito eterno
+            </div>
+            <h2 className="text-pink-400">
+              Historias que nutren el alma de tus hijos
+            </h2>
+            <p className="text-purple-600/80">
+              Cuentos infantiles personalizados basados en
+              principios bíblicos que fortalecen la fe, los
+              valores y el carácter de tu familia desde la
+              infancia.
+            </p>
+            <div className="flex gap-4 flex-wrap">
+              <button className="bg-pink-400 hover:bg-pink-500 text-white px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl">
+                Crear mi cuento
+              </button>
+              <button className="bg-white hover:bg-purple-50 text-purple-600 px-8 py-3 rounded-full transition-all shadow-md border border-purple-200">
+                Ver ejemplos
+              </button>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-pink-200 to-purple-200 rounded-3xl blur-2xl opacity-30"></div>
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1714667109984-9602d193d1ff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHJlYWRpbmclMjBiaWJsZSUyMHN0b3J5fGVufDF8fHx8MTc2NTA2NTE4OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Niños leyendo cuentos bíblicos"
+              className="relative rounded-3xl shadow-2xl w-full h-96 object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section
+        id="producto"
+        className="bg-white/50 backdrop-blur-sm py-20"
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-purple-600 mb-4">
+              ¿Qué hace especial nuestros cuentos?
+            </h2>
+            <p className="text-purple-600/70 max-w-2xl mx-auto">
+              Cada historia está diseñada con amor y cuidado
+              para transmitir valores eternos
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-14 h-14 bg-pink-100 rounded-2xl flex items-center justify-center mb-4">
+                <Gift className="text-pink-400" size={28} />
+              </div>
+              <h3 className="text-purple-600 mb-3">
+                100% Personalizado
+              </h3>
+              <p className="text-purple-600/70">
+                Tu hijo es el protagonista de la historia.
+                Personaliza nombres, características y
+                situaciones específicas de tu familia.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center mb-4">
+                <Book className="text-purple-400" size={28} />
+              </div>
+              <h3 className="text-purple-600 mb-3">
+                Principios Bíblicos
+              </h3>
+              <p className="text-purple-600/70">
+                Cada cuento transmite valores como amor,
+                honestidad, perdón, gratitud y compasión basados
+                en la Palabra de Dios.
+              </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
+              <div className="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-4">
+                <Star className="text-blue-400" size={28} />
+              </div>
+              <h3 className="text-purple-600 mb-3">
+                Ilustraciones Hermosas
+              </h3>
+              <p className="text-purple-600/70">
+                Diseños coloridos y encantadores que capturan la
+                imaginación y hacen que cada lectura sea
+                memorable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Values Section */}
+      <section
+        id="valores"
+        className="max-w-6xl mx-auto px-6 py-20"
+      >
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="relative order-2 md:order-1">
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-200 to-pink-200 rounded-3xl blur-2xl opacity-30"></div>
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1713942590283-59867d5e3f8d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGZhbWlseSUyMHJlYWRpbmclMjB0b2dldGhlcnxlbnwxfHx8fDE3NjUwNjUxOTB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Familia leyendo junta"
+              className="relative rounded-3xl shadow-2xl w-full h-96 object-cover"
+            />
+          </div>
+
+          <div className="space-y-6 order-1 md:order-2">
+            <h2 className="text-purple-600">
+              Construyendo familias con valores eternos
+            </h2>
+            <p className="text-purple-600/80">
+              En CREA FAMILIA creemos que los primeros años son
+              fundamentales para sembrar principios que durarán
+              toda la vida.
+            </p>
+            <div className="space-y-4">
+              <div className="flex gap-3 items-start">
+                <div className="w-6 h-6 bg-pink-200 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-2 h-2 bg-pink-400 rounded-full"></div>
+                </div>
+                <div>
+                  <h4 className="text-purple-600 mb-1">
+                    Fe desde pequeños
+                  </h4>
+                  <p className="text-purple-600/70">
+                    Historias que acercan a tus hijos a Dios de
+                    manera natural y amorosa.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-3 items-start">
+                <div className="w-6 h-6 bg-purple-200 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                </div>
+                <div>
+                  <h4 className="text-purple-600 mb-1">
+                    Momentos en familia
+                  </h4>
+                  <p className="text-purple-600/70">
+                    Crea recuerdos especiales cada noche leyendo
+                    juntos.
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-3 items-start">
+                <div className="w-6 h-6 bg-blue-200 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                </div>
+                <div>
+                  <h4 className="text-purple-600 mb-1">
+                    Valores que perduran
+                  </h4>
+                  <p className="text-purple-600/70">
+                    Lecciones de vida que se quedarán en sus
+                    corazones para siempre.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="bg-gradient-to-r from-pink-100 to-purple-100 py-20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <div className="bg-white rounded-3xl p-12 shadow-xl">
+            <div className="flex justify-center mb-6">
+              <ImageWithFallback
+                src="https://images.unsplash.com/photo-1725711028497-baa7469ac4a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGJvb2slMjBpbGx1c3RyYXRpb258ZW58MXx8fHwxNzY0OTY1MjIxfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                alt="Libro de cuentos infantiles"
+                className="rounded-2xl shadow-lg w-64 h-48 object-cover"
+              />
+            </div>
+            <p className="text-purple-600/80 italic mb-6">
+              "Mis hijos se emocionan cada noche esperando su
+              cuento personalizado. Ver sus nombres en las
+              historias y reconocer los valores que queremos
+              enseñarles ha sido una bendición para nuestra
+              familia."
+            </p>
+            <p className="text-purple-600 mb-6">
+              — María González, madre de 3
+            </p>
+
+            {/* Share Buttons */}
+            <div className="border-t border-purple-100 pt-6 mt-6">
+              <p className="text-purple-600/70 mb-4">
+                Comparte este testimonio
+              </p>
+              <div className="flex gap-3 justify-center flex-wrap">
+                <button
+                  onClick={() => shareOnSocialMedia("facebook")}
+                  className="flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg"
+                >
+                  <Facebook size={18} />
+                  Facebook
+                </button>
+                <button
+                  onClick={() => shareOnSocialMedia("whatsapp")}
+                  className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg"
+                >
+                  <MessageCircle size={18} />
+                  WhatsApp
+                </button>
+                <button
+                  onClick={() => shareOnSocialMedia("telegram")}
+                  className="flex items-center gap-2 bg-blue-400 hover:bg-blue-500 text-white px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg"
+                >
+                  <Send size={18} />
+                  Telegram
+                </button>
+                <button
+                  onClick={() => shareOnSocialMedia("twitter")}
+                  className="flex items-center gap-2 bg-purple-500 hover:bg-purple-600 text-white px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg"
+                >
+                  <Share2 size={18} />
+                  Compartir
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="max-w-6xl mx-auto px-6 py-20">
+        <div className="text-center mb-16">
+          <h2 className="text-purple-600 mb-4">
+            Ejemplos de nuestras ilustraciones
+          </h2>
+          <p className="text-purple-600/70 max-w-2xl mx-auto">
+            Cada cuento viene con hermosas ilustraciones que dan
+            vida a las historias bíblicas
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1579539447503-ec82f0aab843?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGJvb2slMjBpbGx1c3RyYXRpb24lMjB3YXRlcmNvbG9yfGVufDF8fHx8MTc2NTA2Nzk4Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Ilustración de cuento 1"
+              className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+              <p className="text-white">La creación de Dios</p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1578087724623-7d0856eeafbc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiaWJsaWNhbCUyMGNoaWxkcmVuJTIwc3RvcnklMjBhcnR8ZW58MXx8fHwxNzY1MDY3OTg2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Ilustración de cuento 2"
+              className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+              <p className="text-white">El amor de Jesús</p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1759408174265-6dc4bf65940a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwc3Rvcnlib29rJTIwaWxsdXN0cmF0aW9ufGVufDF8fHx8MTc2NTA2Nzk4Nnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Ilustración de cuento 3"
+              className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+              <p className="text-white">
+                La bondad y el perdón
+              </p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1631426964394-06606872d836?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHJlYWRpbmclMjBjb2xvcmZ1bCUyMGJvb2t8ZW58MXx8fHwxNzY1MDY3OTg2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Ilustración de cuento 4"
+              className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+              <p className="text-white">
+                La fe de los pequeños
+              </p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1760475267662-4478199a710a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYW1pbHklMjBib29rJTIwaWxsdXN0cmF0aW9ufGVufDF8fHx8MTc2NTA2Nzk4N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Ilustración de cuento 5"
+              className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+              <p className="text-white">La familia unida</p>
+            </div>
+          </div>
+
+          <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all">
+            <ImageWithFallback
+              src="https://images.unsplash.com/photo-1631582053308-40f482e7ace5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXRlJTIwY2hpbGRyZW4lMjBpbGx1c3RyYXRpb258ZW58MXx8fHwxNzY1MDY3OTg3fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+              alt="Ilustración de cuento 6"
+              className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+              <p className="text-white">
+                La gratitud y el amor
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      <section className="bg-white/50 backdrop-blur-sm py-20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-purple-600 mb-4">
+              Solicita tu cuento personalizado
+            </h2>
+            <p className="text-purple-600/70 max-w-2xl mx-auto">
+              Completa el formulario y nos pondremos en contacto
+              contigo para crear la historia perfecta para tu
+              familia
+            </p>
+          </div>
+
+          <form
+            action="https://formsubmit.co/libreriacreafamilia@gmail.com"
+            method="POST"
+            className="bg-white rounded-3xl p-8 md:p-12 shadow-xl space-y-6"
+          >
+            {/* FormSubmit Configuration */}
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nueva solicitud de cuento personalizado - CREA FAMILIA"
+            />
+            <input
+              type="hidden"
+              name="_captcha"
+              value="false"
+            />
+            <input
+              type="hidden"
+              name="_template"
+              value="table"
+            />
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  htmlFor="nombre"
+                  className="block text-purple-600 mb-2"
+                >
+                  Tu nombre completo *
+                </label>
+                <input
+                  type="text"
+                  id="nombre"
+                  name="nombre"
+                  required
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-purple-200 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
+                  placeholder="María González"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="email"
+                  className="block text-purple-600 mb-2"
+                >
+                  Correo electrónico *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-purple-200 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
+                  placeholder="maria@ejemplo.com"
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  htmlFor="telefono"
+                  className="block text-purple-600 mb-2"
+                >
+                  Teléfono (opcional)
+                </label>
+                <input
+                  type="tel"
+                  id="telefono"
+                  name="telefono"
+                  value={formData.telefono}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-purple-200 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
+                  placeholder="+57 300 123 4567"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="nombreNino"
+                  className="block text-purple-600 mb-2"
+                >
+                  Nombre del niño/a *
+                </label>
+                <input
+                  type="text"
+                  id="nombreNino"
+                  name="nombreNino"
+                  required
+                  value={formData.nombreNino}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-purple-200 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
+                  placeholder="Sofía"
+                />
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div>
+                <label
+                  htmlFor="edad"
+                  className="block text-purple-600 mb-2"
+                >
+                  Edad del niño/a *
+                </label>
+                <input
+                  type="number"
+                  id="edad"
+                  name="edad"
+                  required
+                  min="1"
+                  max="12"
+                  value={formData.edad}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-purple-200 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
+                  placeholder="5"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="tema"
+                  className="block text-purple-600 mb-2"
+                >
+                  Tema o valor bíblico *
+                </label>
+                <select
+                  id="tema"
+                  name="tema"
+                  required
+                  value={formData.tema}
+                  onChange={handleChange}
+                  className="w-full px-4 py-3 rounded-xl border border-purple-200 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all"
+                >
+                  <option value="">Selecciona un tema</option>
+                  <option value="amor">Amor y compasión</option>
+                  <option value="perdon">Perdón</option>
+                  <option value="gratitud">Gratitud</option>
+                  <option value="honestidad">Honestidad</option>
+                  <option value="fe">
+                    Fe y confianza en Dios
+                  </option>
+                  <option value="amistad">Amistad</option>
+                  <option value="obediencia">Obediencia</option>
+                  <option value="paciencia">Paciencia</option>
+                  <option value="generosidad">
+                    Generosidad
+                  </option>
+                  <option value="otro">
+                    Otro (especificar en mensaje)
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label
+                htmlFor="mensaje"
+                className="block text-purple-600 mb-2"
+              >
+                Cuéntanos más sobre tu hijo/a y qué te gustaría
+                incluir en el cuento
+              </label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows={5}
+                value={formData.mensaje}
+                onChange={handleChange}
+                className="w-full px-4 py-3 rounded-xl border border-purple-200 focus:border-pink-400 focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all resize-none"
+                placeholder="A mi hija le encantan los animales y disfruta ayudar a otros niños..."
+              />
+            </div>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                className="bg-pink-400 hover:bg-pink-500 text-white px-12 py-4 rounded-full transition-all shadow-lg hover:shadow-xl inline-flex items-center gap-2"
+              >
+                <Send size={20} />
+                Enviar solicitud
+              </button>
+              <p className="text-purple-400 mt-4">
+                Nos pondremos en contacto contigo en menos de 24
+                horas
+              </p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section
+        id="contacto"
+        className="max-w-4xl mx-auto px-6 py-20 text-center"
+      >
+        <div className="space-y-6">
+          <h2 className="text-purple-600">
+            Comienza a crear historias eternas hoy
+          </h2>
+          <p className="text-purple-600/80 max-w-2xl mx-auto">
+            Invierte en el futuro espiritual de tus hijos. Cada
+            cuento es una semilla de fe y valores que crecerá en
+            sus corazones.
+          </p>
+          <div className="flex gap-4 justify-center flex-wrap">
+            <button className="bg-pink-400 hover:bg-pink-500 text-white px-10 py-4 rounded-full transition-all shadow-lg hover:shadow-xl">
+              Solicitar mi cuento personalizado
+            </button>
+          </div>
+          <p className="text-purple-400">
+            ¿Tienes preguntas? Escríbenos a:
+            contacto@creafamilia.com
+          </p>
+        </div>
+      </section>
+
+      {/* Telegram Community CTA */}
+      <section className="max-w-4xl mx-auto px-6 py-16">
+        <div className="bg-gradient-to-br from-blue-400 to-blue-500 rounded-3xl p-10 md:p-12 shadow-2xl text-white text-center">
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center">
+              <Send className="text-blue-500" size={40} />
+            </div>
+          </div>
+          <h2 className="mb-4">
+            Únete a nuestra comunidad en Telegram
+          </h2>
+          <p className="text-blue-50 mb-8 max-w-2xl mx-auto">
+            Conéctate con otros padres que comparten tu pasión
+            por criar hijos con valores eternos. Recibe material
+            exclusivo, consejos prácticos de crianza,
+            inspiración diaria y adelantos de nuestros diseños
+            originales.
+          </p>
+          <div className="space-y-4 mb-8">
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <p className="text-blue-50">
+                Contenido exclusivo sobre crianza cristiana
+              </p>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <p className="text-blue-50">
+                Acceso anticipado a nuevos diseños y cuentos
+              </p>
+            </div>
+            <div className="flex items-center justify-center gap-3">
+              <div className="w-2 h-2 bg-blue-200 rounded-full"></div>
+              <p className="text-blue-50">
+                Comunidad de padres con los mismos valores
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://t.me/FamiliaFuertesobrelaRoca"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-white text-blue-500 px-10 py-4 rounded-full hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl"
+          >
+            Unirme al canal de Telegram
+          </a>
+        </div>
+      </section>
+
+      {/* Social Media Section */}
+      <section className="bg-gradient-to-r from-purple-100 to-pink-100 py-16">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="text-purple-600 mb-4">
+            Conéctate con nosotros
+          </h2>
+          <p className="text-purple-600/80 mb-10">
+            Síguenos en nuestras redes sociales y mantente al
+            día con nuestras historias
+          </p>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+            {/* Instagram */}
+            <a
+              href="https://instagram.com/crea_familia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 group"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Instagram className="text-white" size={32} />
+              </div>
+              <p className="text-purple-600">Instagram</p>
+              <p className="text-purple-400 text-sm mt-1">
+                @crea_familia
+              </p>
+            </a>
+
+            {/* Facebook */}
+            <a
+              href="https://facebook.com/creafamilia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 group"
+            >
+              <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Facebook className="text-white" size={32} />
+              </div>
+              <p className="text-purple-600">Facebook</p>
+              <p className="text-purple-400 text-sm mt-1">
+                /creafamilia
+              </p>
+            </a>
+
+            {/* WhatsApp */}
+            <a
+              href="https://chat.whatsapp.com/JA9AYj4Hyrs80hmoREtMwA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 group"
+            >
+              <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <MessageCircle
+                  className="text-white"
+                  size={32}
+                />
+              </div>
+              <p className="text-purple-600">WhatsApp</p>
+              <p className="text-purple-400 text-sm mt-1">
+                Únete al grupo
+              </p>
+            </a>
+
+            {/* Email */}
+            <a
+              href="mailto:libreriacreafamilia@gmail.com"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 group"
+            >
+              <div className="w-16 h-16 bg-pink-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Mail className="text-white" size={32} />
+              </div>
+              <p className="text-purple-600">Email</p>
+              <p className="text-purple-400 text-sm mt-1">
+                libreriacreafamilia@gmail.com
+              </p>
+            </a>
+
+            {/* Telegram */}
+            <a
+              href="https://t.me/FamiliaFuertesobrelaRoca"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 group"
+            >
+              <div className="w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Send className="text-white" size={32} />
+              </div>
+              <p className="text-purple-600">Telegram</p>
+              <p className="text-purple-400 text-sm mt-1">
+                FamiliaFuertesobrelaRoca
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-white/70 backdrop-blur-sm border-t border-purple-100 py-8">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <img
+              src={logo}
+              alt="CREA FAMILIA Logo"
+              className="h-8 w-8 object-contain"
+            />
+            <span className="text-purple-600">
+              CREA FAMILIA
+            </span>
+          </div>
+          <p className="text-purple-400">
+            Diseñando productos con propósito eterno
+          </p>
+          <p className="text-xs text-purple-400">
+            ESTAMOS EN CONSTRUCCIÓN DE ESTA INICIATIVA Y
+            QUEREMOS CONOCER TU OPINIÓN
+          </p>
+          <p className="text-purple-400 mt-4">
+            © 2025 Crea Familia. Todos los derechos reservados.
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
